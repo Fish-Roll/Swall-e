@@ -9,14 +9,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-
-/Assets/Materials/*
-/Assets/Assets_FenceChained/*
-/Assets/CGY_ATM/*
-/Assets/Models/*
-/Assets/SciFi Warehouse Kit/*
-/Assets/Sprites/*
-/Assets/Textures/*
+!/Assets/Scripts/*
+!/Assets/Scenes/*
+/Assets/*
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
