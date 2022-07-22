@@ -7,7 +7,9 @@ public class MoveAnimation : MonoBehaviour
     private float rotationSpeed;
     public void Start()
     {
-        rotationSpeed = gameObject.transform.parent.parent.GetComponent<Movement>().moveSpeed;
+        if (gameObject.transform.parent.parent.parent.parent.GetComponent<Movement>() != null)
+            rotationSpeed = gameObject.transform.parent.parent.parent.parent.parent.GetComponent<Movement>().moveSpeed;
+        else rotationSpeed = 10;
     }
 
     public void Update()

@@ -5,7 +5,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float fallSpeed;
     [SerializeField] Transform camera;
-    public float moveSpeed = 7;
+    public float moveSpeed;
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
     private float playerSize = 2;
@@ -16,9 +16,12 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     private float horizontalInput;
     private float verticalInput;
+    public static bool isMoved; // flag for anim run/idle
+    //public Animator playerAnimator;
 
     private void Start()
     {
+        //playerAnimator = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -51,8 +54,20 @@ public class Movement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+        if (horizontalInput !=0 || verticalInput != 0)
+        {
+            isMoved = true;
+        }
+        else
+        {
+            isMoved = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
             Jump();
+            //playerAnimator.SetTrigger("jump");
+        }
     }
 
     private void MovePlayer(float angle)

@@ -14,13 +14,15 @@ namespace Assets.Scripts.Abilities
         private Color color;
         private IEnumerator CoolDownFunction;
         private Color basicColor;
+        public static bool isDash=false; // flag for anim dash
         public override void Activate(GameObject player)
         {
             if (canDash)
             {
+                isDash = true;
                 canDash = false;
                 player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 100f, ForceMode.Impulse);
-                Material wheelColor = player.transform.GetChild(0).Find("wheel_low").GetComponent<MeshRenderer>().material;
+                Material wheelColor = player.transform.Find("playerModel").Find("thething").Find("leg_deform.001").Find("leg_deform.005").Find("leg_deform.006").Find("wheel_low").GetComponent<MeshRenderer>().material;
                 basicColor = wheelColor.color;
                 CoolDownFunction = Cooldown(wheelColor);
                 StartCoroutine(CoolDownFunction);
@@ -35,7 +37,6 @@ namespace Assets.Scripts.Abilities
                 cooldown += Time.deltaTime;
                 changeColor = cooldown / dashCooldown;
                 color = Color.Lerp(basicColor.gamma, new Color(191f, 191f, 191f).gamma, changeColor).gamma;
-                Debug.Log(color);
                 wheelColor.SetColor("_EmissionColor", color.gamma);
                 if (cooldown >= dashCooldown)
                 {

@@ -11,8 +11,11 @@ public class SecondJumpAbility : Ability
     {
         Movement movement = obj.GetComponent<Movement>();
         Debug.Log("Grounded: " + movement.grounded + " countJump: " + movement.countJump);
-        
-        if(!movement.grounded && movement.countJump < maxCountJump)
+
+        if (!movement.grounded && movement.countJump < maxCountJump)
+        {
+            //playerAnimator.SetTrigger("jump");
             movement.Jump();
+        }
     }
 }
