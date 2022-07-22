@@ -9,6 +9,8 @@ namespace Assets.Scripts
         [SerializeField]
         private GameObject _deathScreen;
 
+        [SerializeField] 
+        private GameObject _tool;
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Player"))
@@ -17,6 +19,8 @@ namespace Assets.Scripts
             }
             if(_deathScreen != null)
                 _deathScreen.SetActive(true);
+            if(_tool != null)
+                _tool.SetActive(true);
             other.transform.position = _checkpoint.transform.position;
             other.transform.rotation = Quaternion.identity;
            // Time.timeScale = 0f;

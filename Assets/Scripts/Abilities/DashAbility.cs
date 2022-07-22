@@ -8,24 +8,49 @@ namespace Assets.Scripts.Abilities
 {
     public class DashAbility : Ability
     {
+        [SerializeField]
+        private GameObject dashEffect;
+
+        [SerializeField] private float dashEffectTime;
+        private float dashCurrentTime;
         private bool canDash = true;
         public float dashCooldown;
         private float cooldown;
         private Color color;
         private IEnumerator CoolDownFunction;
+        private IEnumerator DashFunction;
         private Color basicColor;
         public static bool isDash=false; // flag for anim dash
         public override void Activate(GameObject player)
         {
-            if (canDash)
+            if (canDash && dashEffect != null)
             {
                 isDash = true;
                 canDash = false;
-                player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 100f, ForceMode.Impulse);
+                DashFunction = DashEffect(player);
+                StartCoroutine(DashFunction);
                 Material wheelColor = player.transform.Find("playerModel").Find("thething").Find("leg_deform.001").Find("leg_deform.005").Find("leg_deform.006").Find("Wheel").Find("wheel_low").GetComponent<MeshRenderer>().material;
                 basicColor = wheelColor.color;
                 CoolDownFunction = Cooldown(wheelColor);
                 StartCoroutine(CoolDownFunction);
+            }
+        }
+
+        private IEnumerator DashEffect(GameObject player)
+        {
+            dashEffect.SetActive(true);
+            dashCurrentTime = 0;
+            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 100f, ForceMode.Impulse);
+            while (true)
+            {
+                dashCurrentTime += Time.deltaTime;
+                if (dashCurrentTime >= dashEffectTime)
+                {
+                    dashEffect.SetActive(false);
+                    StopCoroutine(DashFunction);
+                }
+
+                yield return null;
             }
         }
         private IEnumerator Cooldown(Material wheelColor)
