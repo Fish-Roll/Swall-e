@@ -18,7 +18,7 @@ namespace Assets.Scripts
             _deathScreen.SetActive(true);
             other.transform.position = _checkpoint.transform.position;
             other.transform.rotation = Quaternion.identity;
-            Time.timeScale = 0f;
+           // Time.timeScale = 0f;
         }
 
         void Update()
