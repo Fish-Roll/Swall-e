@@ -15,7 +15,8 @@ namespace Assets.Scripts
             {
                 return;
             }
-            _deathScreen.SetActive(true);
+            if(_deathScreen != null)
+                _deathScreen.SetActive(true);
             other.transform.position = _checkpoint.transform.position;
             other.transform.rotation = Quaternion.identity;
            // Time.timeScale = 0f;
@@ -23,12 +24,12 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Time.timeScale = 1f;
-                _deathScreen.SetActive(false);
-
-            }
+            if(_deathScreen != null)
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Time.timeScale = 1f;
+                    _deathScreen.SetActive(false);
+                }
         }
      
     }

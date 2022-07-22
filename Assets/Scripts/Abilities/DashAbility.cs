@@ -22,7 +22,7 @@ namespace Assets.Scripts.Abilities
                 isDash = true;
                 canDash = false;
                 player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 100f, ForceMode.Impulse);
-                Material wheelColor = player.transform.Find("playerModel").Find("thething").Find("leg_deform.001").Find("leg_deform.005").Find("leg_deform.006").Find("wheel_low").GetComponent<MeshRenderer>().material;
+                Material wheelColor = player.transform.Find("playerModel").Find("thething").Find("leg_deform.001").Find("leg_deform.005").Find("leg_deform.006").Find("Wheel").Find("wheel_low").GetComponent<MeshRenderer>().material;
                 basicColor = wheelColor.color;
                 CoolDownFunction = Cooldown(wheelColor);
                 StartCoroutine(CoolDownFunction);

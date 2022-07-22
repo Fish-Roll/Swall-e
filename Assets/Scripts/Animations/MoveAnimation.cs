@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MoveAnimation : MonoBehaviour
 {
-    private float rotationSpeed;
+    public float rotationSpeed;
     public void Start()
     {
         if (gameObject.transform.parent.parent.parent.parent.GetComponent<Movement>() != null)
-            rotationSpeed = gameObject.transform.parent.parent.parent.parent.parent.GetComponent<Movement>().moveSpeed;
+            rotationSpeed = gameObject.transform.parent.parent.parent.parent.parent.parent.GetComponent<Movement>().moveSpeed;
         else rotationSpeed = 10;
     }
 
