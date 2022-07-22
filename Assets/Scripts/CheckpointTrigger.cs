@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Assets.Scripts
 {
@@ -15,9 +16,18 @@ namespace Assets.Scripts
             {
                 return;
             }
-            _deathScreen.SetActive(true);
-            other.transform.position = _checkpoint.transform.position;
-            other.transform.rotation = Quaternion.identity;
+            for (int i = 0; i < 3; i++)
+            {
+                Time.timeScale = 0.5f;
+                System.Threading.Thread.Sleep(500);
+                if (i == 2)
+                {
+                    _deathScreen.SetActive(true);
+                    other.transform.position = _checkpoint.transform.position;
+                    other.transform.rotation = Quaternion.identity;
+                }
+            }
+           
            // Time.timeScale = 0f;
         }
 
