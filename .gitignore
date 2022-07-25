@@ -20,7 +20,8 @@
 /Assets/Shaders/*
 /Assets/Sprites/*
 /Assets/Textures/*
-
+/Assets/Sounds/*
+/Build/*
 
 
 # MemoryCaptures can get excessive in size.

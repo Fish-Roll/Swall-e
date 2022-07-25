@@ -12,6 +12,7 @@ namespace Assets.Scripts.Abilities
         private GameObject dashEffect;
 
         [SerializeField] private float dashEffectTime;
+        [SerializeField] private AudioSource audio;
         private float dashCurrentTime;
         private bool canDash = true;
         public float dashCooldown;
@@ -23,8 +24,9 @@ namespace Assets.Scripts.Abilities
         public static bool isDash=false; // flag for anim dash
         public override void Activate(GameObject player)
         {
-            if (canDash && dashEffect != null)
+            if (canDash && dashEffect != null && audio != null)
             {
+                audio.PlayOneShot(audio.clip);
                 isDash = true;
                 canDash = false;
                 DashFunction = DashEffect(player);

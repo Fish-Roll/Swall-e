@@ -9,6 +9,7 @@ public class SecondJumpAbility : Ability
 {
     [SerializeField] private GameObject jumpEffect;
     [SerializeField] private float jumpEffectTime;
+    [SerializeField] private AudioSource jumpSound;
     private IEnumerator JumpEf;
     public float jumpCurrentTime;
     private int maxCountJump = 2;
@@ -18,6 +19,7 @@ public class SecondJumpAbility : Ability
         Movement movement = obj.GetComponent<Movement>();
         if (!movement.grounded && movement.countJump < maxCountJump && jumpEffect!=null)
         {
+            jumpSound.Play();
             JumpEf = JumpEffect(movement);
             StartCoroutine(JumpEf);
             //playerAnimator.SetTrigger("jump");
