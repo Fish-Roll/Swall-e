@@ -1,4 +1,3 @@
-using System.Timers;
 using UnityEngine;
 public class Movement : MonoBehaviour
 {
@@ -49,7 +48,6 @@ public class Movement : MonoBehaviour
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
         rb.velocity += fallVector;
-        //rb.AddForce(Physics.gravity * fallSpeed, ForceMode.Force);
         MovePlayer(targetAngle);
     }
 
@@ -98,4 +96,5 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
+
 }
