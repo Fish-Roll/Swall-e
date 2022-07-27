@@ -11,6 +11,7 @@ namespace Assets.Scripts
         [SerializeField]
         private Ability _ability;
 
+        [SerializeField] private AudioSource _getAbilitySound;
         private void Awake()
         {
             _ability.Key = _keyCode;
@@ -19,6 +20,8 @@ namespace Assets.Scripts
         private void OnTriggerEnter(Collider other)
         {
             other.GetComponent<IAbilityHandler>()?.AddAbility(_ability);
+            if(_getAbilitySound!=null)
+                _getAbilitySound.Play();
         }
     }
 }

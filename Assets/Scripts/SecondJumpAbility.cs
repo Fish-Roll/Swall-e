@@ -10,33 +10,33 @@ public class SecondJumpAbility : Ability
     [SerializeField] private GameObject jumpEffect;
     [SerializeField] private float jumpEffectTime;
     [SerializeField] private AudioSource jumpSound;
+    private Movement _movement;
     private IEnumerator JumpEf;
     public float jumpCurrentTime;
     private int maxCountJump = 2;
     
     public override void Activate(GameObject obj)
     {
-        Movement movement = obj.GetComponent<Movement>();
-        if (!movement.grounded && movement.countJump < maxCountJump && jumpEffect!=null)
+        _movement = obj.GetComponent<Movement>();
+        if (!_movement.grounded && _movement.countJump < maxCountJump && jumpEffect!=null)
         {
-            jumpCurrentTime = 0;
             jumpSound.Play();
-            JumpEf = JumpEffect(movement);
-            StartCoroutine(JumpEf);
+            StartCoroutine("JumpEffect");
             //playerAnimator.SetTrigger("jump");
         }
     }
-    private IEnumerator JumpEffect(Movement movement)
+    private IEnumerator JumpEffect()
     {
+        jumpCurrentTime = 0;
         jumpEffect.SetActive(true);
-        movement.Jump();
+        _movement.Jump();
         while (true)
         {
             jumpCurrentTime += Time.deltaTime;
             if (jumpCurrentTime >= jumpEffectTime)
             {
                 jumpEffect.SetActive(false);
-                StopCoroutine(JumpEf);
+                StopCoroutine("JumpEffect");
             }
             yield return null;
         }
