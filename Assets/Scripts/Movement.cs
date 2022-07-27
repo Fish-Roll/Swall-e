@@ -1,4 +1,3 @@
-using System.Timers;
 using UnityEngine;
 public class Movement : MonoBehaviour
 {
@@ -16,11 +15,13 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     private float horizontalInput;
     private float verticalInput;
+    private Vector3 fallVector;
     public static bool isMoved; // flag for anim run/idle
     //public Animator playerAnimator;
 
     private void Start()
     {
+        fallVector.y = Physics.gravity.y * fallSpeed * Time.deltaTime;
         //playerAnimator = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
@@ -43,11 +44,11 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(Physics.gravity * fallSpeed, ForceMode.Force);
         float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        MovePlayer(angle);
+        rb.velocity += fallVector;
+        MovePlayer(targetAngle);
     }
 
     private void InputMove()
@@ -76,7 +77,7 @@ public class Movement : MonoBehaviour
         if (moveDirection.magnitude >= .1f)
         {
             Vector3 moveDir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
-            transform.Translate(moveDir * moveSpeed * Time.fixedDeltaTime, Space.World);
+            rb.velocity += moveDir.normalized * moveSpeed;
         }
     }
     public void Jump()
@@ -95,4 +96,5 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
+
 }
