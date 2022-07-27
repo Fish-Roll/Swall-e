@@ -8,31 +8,35 @@ public class SpawnObjectsConveyor : MonoBehaviour
 
     public float timeToSpawn;
 
-    private float currentTimeToSpawn;
     [SerializeField] private sbyte direction;
-    
+    private bool _spawned = false;
+
+    [SerializeField] private int countSpawn;
+
+    private int _currentSpawned;
     // Start is called before the first frame update
     void Start()
     {
-        currentTimeToSpawn = timeToSpawn;
-    }
+        StartCoroutine("SpawnObjects");
 
-    // Update is called once per frame
-    void Update()
+    }
+    // private void SpawnObjects()
+    // {
+    //     while (currentSpawned > countSpawn)
+    //     {
+    //         if(Instantiate(objectToSpawn, transform.position, transform.rotation) != null)
+    //             currentSpawned++;
+    //     }
+    // }
+
+    private IEnumerator SpawnObjects()
     {
-        if (currentTimeToSpawn > 0)
-            currentTimeToSpawn -= Time.deltaTime;
-        else
+        while (_currentSpawned < countSpawn)
         {
-            SpawnObjects();
-            currentTimeToSpawn = timeToSpawn;
+            if(Instantiate(objectToSpawn, transform.position, transform.rotation) != null)
+                _currentSpawned++;
+            yield return new WaitForSecondsRealtime(timeToSpawn);
         }
-    }
-
-    private void SpawnObjects()
-    {
-        Instantiate(objectToSpawn,
-            transform.position
-            , transform.rotation);
+        StopCoroutine("SpawnObjects");
     }
 }
