@@ -19,7 +19,7 @@ public class jumpAnimation : MonoBehaviour
         if (Movement.isMoved == true)
         {
             playerAnimator.SetTrigger("run");
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Jump"))
             {
                 playerAnimator.SetTrigger("jump");
 
@@ -29,7 +29,7 @@ public class jumpAnimation : MonoBehaviour
         else
         {
             playerAnimator.SetTrigger("stay");
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Jump"))
             {
                 playerAnimator.SetTrigger("jump");
 

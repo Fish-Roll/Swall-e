@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour
             isMoved = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetButtonDown("Jump") && grounded)
         {
             Jump();
             //playerAnimator.SetTrigger("jump");
