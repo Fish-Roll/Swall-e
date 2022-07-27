@@ -4,6 +4,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float fallSpeed;
     [SerializeField] Transform camera;
+    [SerializeField] private AudioSource _moveSound;
     public float moveSpeed;
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
@@ -58,10 +59,13 @@ public class Movement : MonoBehaviour
         if (horizontalInput !=0 || verticalInput != 0)
         {
             isMoved = true;
+            if(!_moveSound.isPlaying)
+                _moveSound.Play();
         }
         else
         {
             isMoved = false;
+            _moveSound.Stop();
         }
 
         if (Input.GetButtonDown("Jump") && grounded)
