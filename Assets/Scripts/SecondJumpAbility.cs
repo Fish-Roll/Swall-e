@@ -19,6 +19,7 @@ public class SecondJumpAbility : Ability
         Movement movement = obj.GetComponent<Movement>();
         if (!movement.grounded && movement.countJump < maxCountJump && jumpEffect!=null)
         {
+            jumpCurrentTime = 0;
             jumpSound.Play();
             JumpEf = JumpEffect(movement);
             StartCoroutine(JumpEf);
@@ -28,7 +29,6 @@ public class SecondJumpAbility : Ability
     private IEnumerator JumpEffect(Movement movement)
     {
         jumpEffect.SetActive(true);
-        jumpCurrentTime = 0;
         movement.Jump();
         while (true)
         {
