@@ -17,6 +17,8 @@ namespace Assets.Scripts
         
         private GameObject _player;
 
+        int deathTime = 0;
+
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
@@ -37,9 +39,10 @@ namespace Assets.Scripts
                 }
                 _tool.SetActive(true);
             }
-            else
+            if (deathTime == 0)
             {
                 StartCoroutine(Death());
+                deathTime = 1;
             }
         }
 
@@ -60,15 +63,18 @@ namespace Assets.Scripts
             if (_deathScreen != null)
             {
                 if (!_deathScreen.activeInHierarchy) return;
+                _player.GetComponent<Movement>().enabled = true;
+                _player.transform.position = _checkpoint.transform.position;
+                _player.transform.rotation = Quaternion.identity;
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Time.timeScale = 1f;
+                if (Input.GetKeyDown(KeyCode.Space) && deathTime == 1)
+                {     
+                    
                     _deathScreen.SetActive(false);
-                    _player.GetComponent<Movement>().enabled = true;
-                    _player.transform.position = _checkpoint.transform.position;
-                    _player.transform.rotation = Quaternion.identity;
+                    deathTime = 0;
+
                 }
+                
             }
         }
     }
