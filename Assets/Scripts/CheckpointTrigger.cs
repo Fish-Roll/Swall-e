@@ -9,13 +9,14 @@ namespace Assets.Scripts
         private Checkpoint _checkpoint;
         [SerializeField]
         private GameObject _deathScreen;
-
         [SerializeField] 
         private GameObject _tool;
 
         [SerializeField] private AudioSource _deathSound;
         
         private GameObject _player;
+
+        int deathTime = 0;
 
         private void Awake()
         {
@@ -30,16 +31,22 @@ namespace Assets.Scripts
 
             if (_tool != null)
             {
-                if (_deathScreen == null)
-                {
                     _player.transform.position = _checkpoint.transform.position;
                     _player.transform.rotation = Quaternion.identity;
-                }
+                
                 _tool.SetActive(true);
+                if (_deathScreen != null)
+                {
+                    _deathScreen?.SetActive(true);
+                    _player.GetComponent<Movement>().enabled = false;
+                }
+                
             }
-            else
+
+            if (deathTime == 0 && _tool == null)
             {
                 StartCoroutine(Death());
+                deathTime = 1;
             }
         }
 
@@ -48,6 +55,7 @@ namespace Assets.Scripts
         {
             _player.GetComponent<Movement>().enabled = false;
             _player.GetComponentInChildren<Animator>().SetTrigger("die");
+            _player.GetComponentInChildren<Animator>().SetBool("isDie", true);
             _deathSound.Play();
             yield return new WaitForSeconds(2.5f);
 
@@ -60,15 +68,28 @@ namespace Assets.Scripts
             if (_deathScreen != null)
             {
                 if (!_deathScreen.activeInHierarchy) return;
-
-                if (Input.GetKeyDown(KeyCode.Space))
+                _player.GetComponent<Movement>().enabled = true;
+                if (_tool == null)
                 {
-                    Time.timeScale = 1f;
-                    _deathScreen.SetActive(false);
-                    _player.GetComponent<Movement>().enabled = true;
-                    _player.transform.position = _checkpoint.transform.position;
-                    _player.transform.rotation = Quaternion.identity;
+                _player.transform.position = _checkpoint.transform.position;
+                _player.transform.rotation = Quaternion.identity;
+                _player.GetComponentInChildren<Animator>().SetBool("isDie", false);
+                    if (Input.GetKeyDown(KeyCode.Space) && deathTime == 1)
+                    {
+
+                        _deathScreen.SetActive(false);
+                        deathTime = 0;
+
+                    }
                 }
+                if (Input.GetKeyDown(KeyCode.Escape) && deathTime == 0)
+                {     
+                    
+                    _deathScreen.SetActive(false);
+                    deathTime = 0;
+
+                }
+                
             }
         }
     }
