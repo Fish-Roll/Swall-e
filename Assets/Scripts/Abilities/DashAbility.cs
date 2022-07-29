@@ -17,7 +17,7 @@ namespace Assets.Scripts.Abilities
         private bool canDash = true;
         public float dashCooldown;
         private float cooldown;
-        private Color color;
+        private Color color = new Color(191f, 191f, 191f).gamma;
         private IEnumerator CoolDownFunction;
         private IEnumerator DashFunction;
         private Color basicColor;
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Abilities
         {
             dashEffect.SetActive(true);
             dashCurrentTime = 0;
-            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 100f, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 200f, ForceMode.Impulse);
             while (true)
             {
                 dashCurrentTime += Time.deltaTime;

@@ -9,6 +9,7 @@ namespace Assets.Scripts
         private Checkpoint _checkpoint;
         [SerializeField]
         private GameObject _deathScreen;
+
         [SerializeField] 
         private GameObject _tool;
 
@@ -29,17 +30,20 @@ namespace Assets.Scripts
                 return;
             }
 
-            if (_tool != null)
+            if (_tool != null )
             {
+                //_pickUpScreen.SetActive(true);
+
+                
+
                     _player.transform.position = _checkpoint.transform.position;
                     _player.transform.rotation = Quaternion.identity;
-                
-                _tool.SetActive(true);
-                if (_deathScreen != null)
-                {
-                    _deathScreen?.SetActive(true);
-                    _player.GetComponent<Movement>().enabled = false;
-                }
+                    _tool.SetActive(true);
+                    if (_deathScreen != null)
+                    {
+                        _deathScreen?.SetActive(true);
+                        _player.GetComponent<Movement>().enabled = false;
+                    }
                 
             }
 
@@ -49,6 +53,17 @@ namespace Assets.Scripts
                 deathTime = 1;
             }
         }
+        //private void OnTriggerExit(Collider other)
+        //{
+        //    if (!other.CompareTag("Player"))
+        //    {
+        //        return;
+        //    }
+        //    if ( _pickUpScreen != null)
+        //    {
+        //        _pickUpScreen.SetActive(false);
+        //    }
+        //}
 
 
         private IEnumerator Death()

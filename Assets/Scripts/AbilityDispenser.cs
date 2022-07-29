@@ -21,6 +21,8 @@ namespace Assets.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
+            //if (Input.GetKeyDown(KeyCode.E))
+            //{
             other.GetComponent<IAbilityHandler>()?.AddAbility(_ability);
             if(_getAbilitySound!=null)
                 _getAbilitySound.Play();
@@ -29,6 +31,7 @@ namespace Assets.Scripts
                 _oldBackmusic.Stop();
                 _newBackmusic.Play();
             }
+            //}
         }
     }
 }
