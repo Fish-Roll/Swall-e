@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene.unity
     guid: af65d49fae76fd646b5e77d3aec78927
   - enabled: 1
+    path: Assets/Scenes/saber3 copy.unity
+    guid: 103d3a2c7d73437458d70ecd75bd26e7
+  - enabled: 0
     path: Assets/Scenes/saber3.unity
     guid: aab99013002556a42befa4de6cb78eca
   - enabled: 1

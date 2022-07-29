@@ -8,6 +8,10 @@ public class PauseMenu : MonoBehaviour
     private static bool _gameIsPaused = false;
     [SerializeField]
     private GameObject _pauseMenuUI;
+    [SerializeField]
+    private GameObject _authorsMenu;
+    [SerializeField]
+    private GameObject _player;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -22,16 +26,12 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-    private void Awake()
-    {
-        Cursor.visible = false;
-        Time.timeScale = 1f;
-    }
 
     public void Resume()
     {
+        _authorsMenu.SetActive(false);
         _pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        _player.GetComponent<Movement>().enabled = true;
         _gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         _pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        _player.GetComponent<Movement>().enabled = false;
         _gameIsPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -50,7 +50,8 @@ public class PauseMenu : MonoBehaviour
     public void BackToMainMenu()
     {
         _gameIsPaused = false;
-        Time.timeScale = 1f;
+        _player.GetComponent<Movement>().enabled = true;
+        //Time.timeScale = 1f;
         SceneManager.LoadScene("StartMenuScene");
     }
     public void QuitGame()

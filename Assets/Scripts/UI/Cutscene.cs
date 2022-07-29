@@ -13,7 +13,7 @@ public class Cutscene : MonoBehaviour
     {
         if (_videoPlayer.isPaused || Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("saber3");
+            SceneManager.LoadScene("saber3 copy");
         }
     }
 
