@@ -23,9 +23,10 @@ namespace Assets.Scripts
         {
             //if (Input.GetKeyDown(KeyCode.E))
             //{
-            other.GetComponent<IAbilityHandler>()?.AddAbility(_ability);
-            if(_getAbilitySound!=null)
+            if (_getAbilitySound != null)
                 _getAbilitySound.Play();
+            other.GetComponent<IAbilityHandler>()?.AddAbility(_ability);
+            
             if (_newBackmusic != null)
             {
                 _oldBackmusic.Stop();
