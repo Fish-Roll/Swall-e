@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,8 @@ public class PauseMenu : MonoBehaviour
     private GameObject _authorsMenu;
     [SerializeField]
     private GameObject _player;
+    [SerializeField]
+    private Checkpoint _checkpoint;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -46,7 +49,19 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-
+    public void BackToSpawn()
+    {
+        _authorsMenu.SetActive(false);
+        _pauseMenuUI.SetActive(false);
+        _player.transform.position = _checkpoint.transform.position;
+        _player.transform.rotation = Quaternion.identity;
+        _player.GetComponent<Movement>().enabled = true;
+        _gameIsPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        var myEventSystem = GameObject.Find("EventSystem");
+        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+    }
     public void BackToMainMenu()
     {
         _gameIsPaused = false;
