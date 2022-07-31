@@ -13,6 +13,7 @@ namespace Assets.Scripts.Abilities
 
         [SerializeField] private float dashEffectTime;
         [SerializeField] private AudioSource audio;
+        [SerializeField] private float dashForce;
         private float dashCurrentTime;
         private bool canDash = true;
         public float dashCooldown;
@@ -42,7 +43,7 @@ namespace Assets.Scripts.Abilities
         {
             dashEffect.SetActive(true);
             dashCurrentTime = 0;
-            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * 200f, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(player.transform.forward * dashForce, ForceMode.Impulse);
             while (true)
             {
                 dashCurrentTime += Time.deltaTime;
