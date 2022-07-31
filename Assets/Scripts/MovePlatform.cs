@@ -25,13 +25,13 @@ public class MovePlatform : MonoBehaviour
             _pointInPath.MoveNext();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        collision.transform.SetParent(transform);
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        other.transform.SetParent(null);
-    }
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     collision.transform.SetParent(transform);
+    // }
+    //
+    // private void OnCollisionExit(Collision other)
+    // {
+    //     other.transform.SetParent(null);
+    // }
 }
