@@ -17,21 +17,20 @@ public class MovePlatform : MonoBehaviour
         _pointInPath.MoveNext();
         transform.position = _pointInPath.Current.position;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, _pointInPath.Current.position, Time.deltaTime * speed);
         var distSquare = (transform.position - _pointInPath.Current.position).sqrMagnitude;
         if (distSquare < _maxDistance * _maxDistance)
             _pointInPath.MoveNext();
     }
-
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     collision.transform.SetParent(transform);
-    // }
-    //
-    // private void OnCollisionExit(Collision other)
-    // {
-    //     other.transform.SetParent(null);
-    // }
+    private void OnCollisionEnter(Collision collision)
+    {
+        collision.transform.SetParent(transform);
+    }
+    
+    private void OnCollisionExit(Collision other)
+    {
+        other.transform.SetParent(null);
+    }
 }
