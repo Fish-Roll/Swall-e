@@ -83,7 +83,6 @@ namespace Assets.Scripts
             if (_deathScreen != null)
             {
                 if (!_deathScreen.activeInHierarchy) return;
-                _player.GetComponent<Movement>().enabled = true;
                 if (_tool == null)
                 {
                 _player.transform.position = _checkpoint.transform.position;
@@ -93,6 +92,7 @@ namespace Assets.Scripts
                     {
 
                         _deathScreen.SetActive(false);
+                        _player.GetComponent<Movement>().enabled = true;
                         deathTime = 0;
 
                     }
@@ -101,6 +101,7 @@ namespace Assets.Scripts
                 {     
                     
                     _deathScreen.SetActive(false);
+                    _player.GetComponent<Movement>().enabled = true;
                     deathTime = 0;
 
                 }
