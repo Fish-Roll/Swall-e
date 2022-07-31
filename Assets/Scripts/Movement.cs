@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] Transform camera;
     [SerializeField] private AudioSource _moveSound;
+    private float coyoteTime = 0.1f;
+    private float _coyoteTimeCounter;
     public float moveSpeed;
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
@@ -19,7 +21,7 @@ public class Movement : MonoBehaviour
     private float verticalInput;
     private Vector3 fallVector;
     private RaycastHit hit;
-    
+
     public static bool isMoved; // flag for anim run/idle
     //public Animator playerAnimator;
 
@@ -34,16 +36,20 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        grounded = Physics.SphereCast(transform.position, transform.lossyScale.x/200000, -transform.up, out hit, 0.25f);
+        grounded = Physics.SphereCast(transform.position, transform.lossyScale.x/20000, -transform.up, out hit, 0.25f);
         InputMove();
         SpeedControl();
         if (grounded)
         {
             rb.drag = groundDrag;
+            _coyoteTimeCounter = coyoteTime;
             countJump = 0;
         }
         else
+        {
+            _coyoteTimeCounter -= Time.deltaTime;
             rb.drag = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -71,7 +77,7 @@ public class Movement : MonoBehaviour
             _moveSound.Stop();
         }
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && _coyoteTimeCounter > 0f)
         {
             Jump();
             //playerAnimator.SetTrigger("jump");
