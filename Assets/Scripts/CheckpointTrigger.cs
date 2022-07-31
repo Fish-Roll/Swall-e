@@ -6,7 +6,7 @@ namespace Assets.Scripts
     public class CheckpointTrigger : MonoBehaviour
     {
         [SerializeField]
-        private Checkpoint _checkpoint;
+        public Checkpoint _checkpoint;
         [SerializeField]
         private GameObject _deathScreen;
 

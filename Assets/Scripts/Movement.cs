@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class Movement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Movement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Vector3 fallVector;
+    private RaycastHit hit;
+    
     public static bool isMoved; // flag for anim run/idle
     //public Animator playerAnimator;
 
@@ -31,7 +34,7 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerSize * 0.5f + 0.2f);
+        grounded = Physics.SphereCast(transform.position, transform.lossyScale.x/200000, -transform.up, out hit, 0.25f);
         InputMove();
         SpeedControl();
         if (grounded)
@@ -101,4 +104,17 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (grounded)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position + transform.right * hit.distance, transform.lossyScale.x / 2);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + transform.right * hit.distance, transform.lossyScale.x / 2);
+        }
+    }
 }
