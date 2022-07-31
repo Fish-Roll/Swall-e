@@ -6,6 +6,7 @@ TagManager:
   tags:
   - KillMachine
   - Trash
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
