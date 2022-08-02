@@ -5,8 +5,8 @@ namespace Assets.Scripts
 {
     public class CheckpointTrigger : MonoBehaviour
     {
-        [SerializeField]
-        public Checkpoint _checkpoint;
+        
+        public static Checkpoint _checkpoint;
         [SerializeField]
         private GameObject _deathScreen;
 
@@ -17,14 +17,24 @@ namespace Assets.Scripts
         
         private GameObject _player;
 
+        
+
+        public Vector3 offset;
+
         int deathTime = 0;
 
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
+
         }
+
+       
+
         private void OnTriggerEnter(Collider other)
         {
+            
+
             if (!other.CompareTag("Player"))
             {
                 return;
@@ -85,7 +95,8 @@ namespace Assets.Scripts
                 if (!_deathScreen.activeInHierarchy) return;
                 if (_tool == null)
                 {
-                _player.transform.position = _checkpoint.transform.position;
+                    //Instantiate(_player, lastCheckpointPosition, Quaternion.identity);
+                    _player.transform.position = _checkpoint.transform.position;
                 _player.transform.rotation = Quaternion.identity;
                 _player.GetComponentInChildren<Animator>().SetBool("isDie", false);
                     if (Input.GetKeyDown(KeyCode.Space) && deathTime == 1)
