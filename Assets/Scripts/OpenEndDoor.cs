@@ -28,7 +28,5 @@ public class OpenEndDoor : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         moveObject.transform.position = end;
-        if (audioSource != null && audioSource.isPlaying)
-            audioSource.Stop();
     }
 }

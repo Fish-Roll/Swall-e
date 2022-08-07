@@ -7,8 +7,6 @@ namespace Assets.Scripts
     public class DieByConvayor : MonoBehaviour
     {
         [SerializeField]
-        private Checkpoint _checkpoint;
-        [SerializeField]
         private GameObject _outScreen;
         [SerializeField]
         private AudioSource _deathSound;
@@ -23,9 +21,7 @@ namespace Assets.Scripts
             _deathSound.Play();
             _outScreen.SetActive(true);
             //_player.GetComponent<Movement>().enabled = false;
-            other.transform.position = _checkpoint.transform.position;
-            other.transform.rotation = Quaternion.identity;
-
+            MoveToCheckpoint.MovePlayer(other.gameObject);
         }
 
         void Update()

@@ -11,7 +11,7 @@ public class Cutscene : MonoBehaviour
 
     void Update()
     {
-        if (_videoPlayer.isPaused || Input.GetKeyDown(KeyCode.Space))
+        if (_videoPlayer.isPaused || Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene("saber3 copy");
         }
