@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        grounded = Physics.SphereCast(transform.position, transform.lossyScale.x / 20000, -transform.up, out hit, 0.25f);
+        grounded = Physics.SphereCast(transform.position, transform.lossyScale.x/20000, -transform.up, out hit, 0.25f);
         InputMove();
         SpeedControl();
         if (grounded)
@@ -65,10 +65,10 @@ public class Movement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        if (horizontalInput != 0 || verticalInput != 0)
+        if (horizontalInput !=0 || verticalInput != 0)
         {
             isMoved = true;
-            if (!_moveSound.isPlaying)
+            if(!_moveSound.isPlaying)
                 _moveSound.Play();
         }
         else
