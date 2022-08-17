@@ -13,8 +13,6 @@ public class PauseMenu : MonoBehaviour
     private GameObject _authorsMenu;
     [SerializeField]
     private GameObject _player;
-    [SerializeField]
-    private Checkpoint _checkpoint;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -38,8 +36,8 @@ public class PauseMenu : MonoBehaviour
         _gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        var myEventSystem = GameObject.Find("EventSystem");
-        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+        //var myEventSystem = GameObject.Find("EventSystem");
+        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
     void Pause()
     {
@@ -53,14 +51,13 @@ public class PauseMenu : MonoBehaviour
     {
         _authorsMenu.SetActive(false);
         _pauseMenuUI.SetActive(false);
-        _player.transform.position = _checkpoint.transform.position;
-        _player.transform.rotation = Quaternion.identity;
+        MoveToCheckpoint.MovePlayer(_player);
         _player.GetComponent<Movement>().enabled = true;
         _gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        var myEventSystem = GameObject.Find("EventSystem");
-        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+        //var myEventSystem = GameObject.Find("EventSystem");
+        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
     public void BackToMainMenu()
     {
@@ -71,7 +68,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void QuitGame()
     {
-        Debug.Log("QUIT");
         Application.Quit();
     }
 }

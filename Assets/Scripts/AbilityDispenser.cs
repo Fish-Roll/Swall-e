@@ -13,7 +13,6 @@ namespace Assets.Scripts
 
         [SerializeField] private AudioSource _newBackmusic;
         [SerializeField] private AudioSource _oldBackmusic;
-        [SerializeField] private AudioSource _getAbilitySound;
         private void Awake()
         {
             _ability.Key = _keyCode;
@@ -21,18 +20,12 @@ namespace Assets.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            //if (Input.GetKeyDown(KeyCode.E))
-            //{
-            if (_getAbilitySound != null)
-                _getAbilitySound.Play();
             other.GetComponent<IAbilityHandler>()?.AddAbility(_ability);
-            
             if (_newBackmusic != null)
             {
                 _oldBackmusic.Stop();
                 _newBackmusic.Play();
             }
-            //}
         }
     }
 }
