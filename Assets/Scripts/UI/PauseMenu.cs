@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,8 +36,8 @@ public class PauseMenu : MonoBehaviour
         _gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        var myEventSystem = GameObject.Find("EventSystem");
-        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+        //var myEventSystem = GameObject.Find("EventSystem");
+        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
     void Pause()
     {
@@ -46,7 +47,18 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-
+    public void BackToSpawn()
+    {
+        _authorsMenu.SetActive(false);
+        _pauseMenuUI.SetActive(false);
+        MoveToCheckpoint.MovePlayer(_player);
+        _player.GetComponent<Movement>().enabled = true;
+        _gameIsPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        //var myEventSystem = GameObject.Find("EventSystem");
+        //myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+    }
     public void BackToMainMenu()
     {
         _gameIsPaused = false;
@@ -56,7 +68,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void QuitGame()
     {
-        Debug.Log("QUIT");
         Application.Quit();
     }
 }
