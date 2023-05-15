@@ -17,4 +17,9 @@ public class Cutscene : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        SceneManager.LoadScene("saber3 copy");
+    }
+
 }

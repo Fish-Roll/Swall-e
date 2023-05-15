@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] Transform camera;
     [SerializeField] private AudioSource _moveSound;
+    [SerializeField] private FixedJoystick _joystick;
     private float coyoteTime = 0.1f;
     private float _coyoteTimeCounter;
     public float moveSpeed;
@@ -63,8 +64,10 @@ public class Movement : MonoBehaviour
 
     private void InputMove()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        //horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = _joystick.Horizontal;
+        //verticalInput = Input.GetAxisRaw("Vertical");
+        verticalInput = _joystick.Vertical;
         if (horizontalInput !=0 || verticalInput != 0)
         {
             isMoved = true;
