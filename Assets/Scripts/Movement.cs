@@ -96,6 +96,16 @@ public class Movement : MonoBehaviour
             rb.velocity += moveDir.normalized * moveSpeed;
         }
     }
+
+    public void BtnJump()
+    {
+        Console.WriteLine("ddd");
+        if (_coyoteTimeCounter > 0f)
+        {
+            Jump();
+            //playerAnimator.SetTrigger("jump");
+        }
+    }
     public void Jump()
     {
         ++countJump;

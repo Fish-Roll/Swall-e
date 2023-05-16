@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
         var myEventSystem = GameObject.Find("EventSystem");
         myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
-    void Pause()
+    public void Pause()
     {
         _pauseMenuUI.SetActive(true);
         _player.GetComponent<Movement>().enabled = false;

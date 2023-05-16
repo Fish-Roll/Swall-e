@@ -15,7 +15,7 @@ public class DashHintTrigger : MonoBehaviour
         {
             return;
         }
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         _ui.SetActive(false);
         _dashHint.SetActive(true);
     }
