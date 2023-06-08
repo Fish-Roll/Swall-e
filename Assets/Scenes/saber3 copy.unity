@@ -5796,6 +5796,31 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 3610061287309879590, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
   m_PrefabInstance: {fileID: 3610061286729248604}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &597444225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3610061287309879592, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
+  m_PrefabInstance: {fileID: 3610061286729248604}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597444209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2333c74383986904ebd4943c0ea6e459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &597444226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597444209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee6ef5771919e240a5e809e47fe1526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 597444210}
+  player: {fileID: 0}
 --- !u!1 &610746178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6489,6 +6514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 697930993}
   - component: {fileID: 697930994}
+  - component: {fileID: 697930995}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: Untagged
@@ -6505,15 +6531,15 @@ RectTransform:
   m_GameObject: {fileID: 697930992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 40, y: 40, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1931130636}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -123.400024, y: 330.7}
+  m_AnchoredPosition: {x: -141.58002, y: 381.2}
   m_SizeDelta: {x: 5.130005, y: 5.130005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &697930994
@@ -6557,7 +6583,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: efbf1c0c1cd620e4fa0904e56057e21c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62cbe4bf3e9801c4c90c590303b60765, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6568,6 +6594,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &697930995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697930992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &711535826
 GameObject:
   m_ObjectHideFlags: 0
@@ -13718,15 +13788,15 @@ RectTransform:
   m_GameObject: {fileID: 1327805691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1931130636}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -814.59, y: 589.65}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 146.79999, y: -132.40002}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327805693
@@ -13805,7 +13875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d97994fc05d31fd449a0b49d2efaa673, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74dc7ccb1c478254381e738b61f42509, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15886,7 +15956,7 @@ RectTransform:
   m_GameObject: {fileID: 1585112777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1931130636}
@@ -15941,13 +16011,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 240366153}
-        m_TargetAssemblyTypeName: Assets.Scripts.Abilities.DashAbility, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 2
+      - m_Target: {fileID: 597444225}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: BtnJump
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 597444209}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15973,7 +16055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39f1f08d1c8393841aca09fc8b0d3abb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c59877bd0e8b83c4aa53b1f767f4f06b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -37324,6 +37406,14 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1839279278}
+    - target: {fileID: 3610061287309879593, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
+      propertyPath: _abilities.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610061287309879593, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
+      propertyPath: _abilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 240366153}
     - target: {fileID: 3610061287309879597, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -37375,7 +37465,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3610061287309879597, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597444226}
   m_SourcePrefab: {fileID: 100100000, guid: c142b03d2c2429d42bd4edc07c16c17a, type: 3}
 --- !u!1 &3614691390457426998
 GameObject:
@@ -57829,6 +57922,10 @@ PrefabInstance:
       propertyPath: _deathScreen
       value: 
       objectReference: {fileID: 1365185741}
+    - target: {fileID: 7290986001911548109, guid: 98636904dd88a36408b482b89b6d2420, type: 3}
+      propertyPath: _button
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7290986001911548109, guid: 98636904dd88a36408b482b89b6d2420, type: 3}
       propertyPath: _newBackmusic
       value: 

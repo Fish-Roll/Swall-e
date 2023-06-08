@@ -15,7 +15,7 @@ public class DashHintTrigger : MonoBehaviour
         {
             return;
         }
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         _ui.SetActive(false);
         _dashHint.SetActive(true);
     }
@@ -23,7 +23,7 @@ public class DashHintTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             _dashHint.SetActive(false);
             _ui.SetActive(true);
         }

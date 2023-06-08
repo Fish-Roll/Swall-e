@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Infrastructure;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -7,6 +8,9 @@ namespace Assets.Scripts
     {
         [SerializeField]
         private KeyCode _keyCode;
+        //[SerializeField]
+        //private Button _button;
+        public Button _button;
 
         [SerializeField]
         private Ability _ability;
@@ -17,6 +21,10 @@ namespace Assets.Scripts
         private void Awake()
         {
             _ability.Key = _keyCode;
+            //if (!_button)
+            //{
+            //    _ability.But = _button.GetComponent<Button>();
+            //}
         }
 
         private void OnTriggerEnter(Collider other)

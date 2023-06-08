@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Infrastructure;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Assets.Scripts
     {
         [SerializeField]
         private List<Ability> _abilities;
+        public IReadOnlyCollection<Ability> GetAbilities => _abilities.ToList();
 
         private void Update()
         {
@@ -19,6 +21,8 @@ namespace Assets.Scripts
                 }
             });
         }
+
+        
 
         public void AddAbility(Ability ability)
         {

@@ -15,7 +15,7 @@ public class DoubleJumpHintTrigger : MonoBehaviour
         {
             return;
         }
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         _ui.SetActive(false);
         _doubleJumpHint.SetActive(true);
     }
@@ -23,7 +23,7 @@ public class DoubleJumpHintTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 1f;
+           // Time.timeScale = 1f;
             _doubleJumpHint.SetActive(false);
             _ui.SetActive(true);
         }   
