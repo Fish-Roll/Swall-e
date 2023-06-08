@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using UnityEditor.SearchService;
 using Assets.Scripts;
 using static UnityEngine.Rendering.PostProcessing.PostProcessResources;
+using Struct;
 
 public interface ISave
 {
@@ -19,6 +20,8 @@ public class SavesManager : MonoBehaviour, ISave
 
     public Transform playerTransform;
     public GameObject player;
+
+    [SerializeField] private AesCryptoComponent aesEncrypt;
 
 
     public class Player
@@ -34,10 +37,14 @@ public class SavesManager : MonoBehaviour, ISave
         if (File.Exists(savePath))
         {
             // Читаем JSON из файла
-            string json = (File.ReadAllText(savePath));
+            string encryptedJson = (File.ReadAllText(savePath));
 
+            byte[] encryptedBytes = JsonUtility.FromJson<EncryptedGameCoreStruct>(encryptedJson).data;
+
+            string json = aesEncrypt.Decrypt(encryptedBytes);
             // Преобразуем JSON в объект
             PlayerPositionData positionData = JsonUtility.FromJson<PlayerPositionData>(json);
+            //this.position = positionData.position;
 
             // Восстанавливаем позицию персонажа
             playerTransform.position = positionData.position;
@@ -52,8 +59,8 @@ public class SavesManager : MonoBehaviour, ISave
 
     public void Save()
     {
-        PlayerPositionData positionData = new PlayerPositionData();
-        positionData.position = playerTransform.position;
+        PlayerPositionData positionData = new PlayerPositionData()
+        { position = playerTransform.position };
 
         AbilityHandler ability = player.GetComponent<AbilityHandler>();
 
@@ -61,10 +68,18 @@ public class SavesManager : MonoBehaviour, ISave
 
         string json = JsonUtility.ToJson(positionData);
 
+        byte[] encryptedBytes = this.aesEncrypt.Encrypt(json);
+
+        EncryptedGameCoreStruct encryptedGameCore = new EncryptedGameCoreStruct()
+        {
+            data= encryptedBytes,
+        };
+
+        string encryptedJson = JsonUtility.ToJson(encryptedGameCore);
         
         File.WriteAllText(
             SavesManager.savePath + "/jsonWorld.json",
-            JsonConvert.SerializeObject(json, Formatting.Indented, new JsonSerializerSettings()
+            JsonConvert.SerializeObject(encryptedJson, Formatting.Indented, new JsonSerializerSettings()
                 {
                     ReferenceLoopHandling= ReferenceLoopHandling.Ignore
                 })
@@ -97,7 +112,7 @@ public class SavesManager : MonoBehaviour, ISave
 
 }
 [System.Serializable]
-public class PlayerPositionData
+public struct PlayerPositionData
 {
     public Vector3 position;
 }
